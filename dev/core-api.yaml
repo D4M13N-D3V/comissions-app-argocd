@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: search
+  name: core-api
   namespace: argocd
 spec:
   goTemplate: true
@@ -14,7 +14,7 @@ spec:
           - path: "dev/.config/*.json"
   template:
     metadata:
-      name: "search-{{.deployment.cluster.namespace}}"
+      name: "core-api-{{.deployment.cluster.namespace}}"
     spec:
       project: "{{.deployment.argocd.project}}"
       source:
