@@ -1,0 +1,21 @@
+{
+    "deployment": {
+      "argocd": {
+        "project": "default"
+      },
+      "cluster": {
+        "name": "in-cluster",
+        "namespace": "comissions-dev",
+        "address": "https://kubernetes.default.svc"
+      }
+    },
+    "apps": {
+        "core-api": {
+            "version" : "1.0.0",
+            "image": "core-api:1.0.0",
+            "ingress":{
+                "host": "core-api.comissions-dev.com"
+            }
+        }
+    }
+  }
