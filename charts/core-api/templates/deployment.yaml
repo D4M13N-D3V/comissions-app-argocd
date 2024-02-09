@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "search.fullname" . }}
+  name: {{ include "core-api.fullname" . }}
   labels:
-    {{- include "search.labels" . | nindent 4 }}
+    {{- include "core-api.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "search.selectorLabels" . | nindent 6 }}
+      {{- include "core-api.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,13 +18,16 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "search.selectorLabels" . | nindent 8 }}
+        {{- include "core-api.labels" . | nindent 8 }}
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "search.serviceAccountName" . }}
+      serviceAccountName: {{ include "core-api.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -33,55 +36,24 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          env:
-          - name: NEXT_PUBLIC_MUI_X_LICENSE_KEY
-            value: {{ .Values.mui_x_license }}
-
-            {{- with .Values.keycloak }}
-          - name: KEYCLOAK_ID
-            value: '{{ .client_id }}'
-          - name: KEYCLOAK_SECRET
-            value: '{{ .client_secret }}'
-          - name: KEYCLOAK_ISSUER
-            value: '{{ .client_issuer }}'
-            {{- end }}
-
-          - name: NEXTAUTH_URL
-            value: '{{ .Values.nextauth.url }}'
-            
-            {{- with .Values.dim }}
-          - name: API_GATEWAY
-            value: '{{ .gateway }}'
-          - name: DOCUMENT_STREAM_API
-            value: '{{ .stream_api }}'
-          - name: DOCUMENT_PREVIEW_API
-            value: '{{ .preview_api }}'
-            {{- end }}
-
-            {{- with .Values.solr }}
-          - name: ZK_HOST
-            value: '{{ .zkHost }}'
-          - name: SOLR_HOST_OVERRIDE
-            value: '{{ .solr_host_override }}'
-          - name: SOLR_USER
-            {{- toYaml .basicAuth.usernameValue | nindent 12 }}
-          - name: SOLR_PASS
-            {{- toYaml .basicAuth.passwordValue | nindent 12 }}
-            {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
           livenessProbe:
-            httpGet:
-              path: /
-              port: http
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
           readinessProbe:
-            httpGet:
-              path: /
-              port: http
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          {{- with .Values.volumeMounts }}
+          volumeMounts:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      {{- with .Values.volumes }}
+      volumes:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
