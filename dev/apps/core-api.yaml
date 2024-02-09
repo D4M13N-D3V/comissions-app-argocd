@@ -20,7 +20,7 @@ spec:
       source:
         repoURL: https://github.com/comissions-app/argocd.git
         targetRevision: HEAD
-        path: charts/core-api
+        path: charts/core-api/
         helm:
           values: |
             fullnameOverride: "core-api"
