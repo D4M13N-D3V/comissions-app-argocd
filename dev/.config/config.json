@@ -11,8 +11,8 @@
     },
     "apps": {
         "core-api": {
-            "version" : "1.0.0",
-            "image": "core-api:1.0.0",
+            "version" : "latest",
+            "image": "ghcr.io/comissions-app/core-api",
             "ingress":{
                 "host": "core-api.comissions-dev.com"
             }

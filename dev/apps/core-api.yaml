@@ -23,6 +23,11 @@ spec:
         path: charts/core-api
         helm:
           values: |
+            image:
+              repository: {{.apps.core-api.image}}
+              pullPolicy: Always
+              tag: "{{.apps.core-api.version}}"
+
             imagePullSecrets:
               - name: comissions-app
                             
@@ -43,14 +48,14 @@ spec:
               annotations:
                 nginx.ingress.kubernetes.io/proxy-body-size: 512m
               hosts:
-                - host: 'core-api.comissions.dev'
+                - host: '{{.apps.core-api.ingress.host}}'
                   paths:
                     - path: /
                       pathType: ImplementationSpecific
               tls:
                 - secretName: 'tls-secret'
                   hosts:
-                    - 'core-api.comissions.dev'
+                    - '{{.apps.core-api.ingress.host}}'
       destination:
         server: 'https://kubernetes.default.svc'
         namespace: 'argo-cd '
