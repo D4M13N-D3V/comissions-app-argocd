@@ -12,5 +12,5 @@ spec:
   project: comissions.app
   source:
     path: dev/apps
-    repoURL: https://github.com/foxutech/kubernetes.git
+    repoURL: https://github.com/comissions-app/argocd.git
     targetRevision: HEAD
