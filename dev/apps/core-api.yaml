@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: core-api
-  namespace: argo-cd
+  namespace: comissions-dev
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
@@ -58,7 +58,7 @@ spec:
                     - 'core-api.comissions.dev'
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: 'argo-cd'
+        namespace: 'comissions-dev'
       syncPolicy:
         automated:
           prune: true

@@ -2,12 +2,12 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: development
-  namespace: argo-cd
+  namespace: comissions-dev
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: argo-cd
+    namespace: comissions-dev
     server: https://kubernetes.default.svc
   project: comissions.app
   source:
