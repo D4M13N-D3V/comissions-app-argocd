@@ -11,12 +11,12 @@ spec:
       repoURL: https://github.com/comissions-app/argocd.git
       revision: HEAD
       files:
-      - path: "dev/.config/*.json"
+      - path: "dev/.config/config.json"
   template:
     metadata:
       name: 'core-api'
     spec:
-      project: '{{.deployment.argocd.project}}'
+      project: 'comissions.app'
       source:
         repoURL: https://github.com/comissions-app/argocd.git
         targetRevision: HEAD
@@ -52,8 +52,8 @@ spec:
                   hosts:
                     - 'core-api.comissions.dev'
       destination:
-        server: '{{.deployment.cluster.address}}'
-        namespace: '{{.deployment.cluster.namespace}}'
+        server: 'https://kubernetes.default.svc'
+        namespace: 'argo-cd'
       syncPolicy:
         automated:
           prune: true
