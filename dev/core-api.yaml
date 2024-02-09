@@ -20,7 +20,7 @@ spec:
       source:
         repoURL: https://github.com/Data443/argocd.git
         targetRevision: HEAD
-        path: develop/dim/core-api
+        path: charts/core-api
         helm:
           values: |
             fullnameOverride: "core-api"
