@@ -1,21 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: all-dev-apps
-  namespace: comissions-dev
+  name: development
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: comissions-dev
+    namespace: argocd
     server: https://kubernetes.default.svc
   project: comissions.app
   source:
-    path: "dev/apps/"
-    repoURL: https://github.com/comissions-app/argocd.git
+    path: dev/apps
+    repoURL: https://github.com/foxutech/kubernetes.git
     targetRevision: HEAD
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - ApplyOutOfSyncOnly=true
-      - CreateNamespace=true
