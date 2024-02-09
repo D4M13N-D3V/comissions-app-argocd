@@ -1,7 +1,7 @@
 {
     "deployment": {
       "argocd": {
-        "project": "default"
+        "project": "comissions.app"
       },
       "cluster": {
         "name": "in-cluster",

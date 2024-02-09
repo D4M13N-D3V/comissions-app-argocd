@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     path: apps
-    repoURL: https://github.com/Data443/argocd.git
+    repoURL: https://github.com/comissions-app/argocd.git
     targetRevision: HEAD
   syncPolicy:
     automated:
