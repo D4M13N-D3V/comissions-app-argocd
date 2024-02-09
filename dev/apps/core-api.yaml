@@ -1,16 +1,63 @@
 apiVersion: argoproj.io/v1alpha1
-kind: Application
+kind: ApplicationSet
 metadata:
   name: core-api
   namespace: comissions-dev
-  finalizers:
-  - resources-finalizer.argocd.argoproj.io
 spec:
-  destination:
-    namespace: comissions-dev
-    server: https://kubernetes.default.svc
-  project: comissions.app
-  source:
-    path: charts/core-api
-    repoURL: https://github.com/comissions-app/argocd.git
-    targetRevision: HEAD
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - git:
+      repoURL: https://github.com/comissions-app/argocd.git
+      revision: HEAD
+      files:
+      - path: "dev/.config/*.json"
+  template:
+    metadata:
+      name: 'core-api'
+    spec:
+      project: '{{.deployment.argocd.project}}'
+      source:
+        repoURL: https://github.com/comissions-app/argocd.git
+        targetRevision: HEAD
+        path: charts/core-api
+        helm:
+          values: |
+            imagePullSecrets:
+              - name: regcred
+                            
+            resources:
+              limits:
+                cpu: 1
+              requests:
+                cpu: 100m
+            autoscaling:
+              enabled: true
+              minReplicas: 2
+              maxReplicas: 20
+              targetCPUUtilizationPercentage: 80
+              # targetMemoryUtilizationPercentage: 80
+
+            ingress:
+              enabled: true
+              annotations:
+                nginx.ingress.kubernetes.io/proxy-body-size: 512m
+              hosts:
+                - host: 'core-api.comissions.dev'
+                  paths:
+                    - path: /
+                      pathType: ImplementationSpecific
+              tls:
+                - secretName: 'tls-secret'
+                  hosts:
+                    - 'core-api.comissions.dev'
+      destination:
+        server: '{{.deployment.cluster.address}}'
+        namespace: '{{.deployment.cluster.namespace}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - ApplyOutOfSyncOnly=true
+          - CreateNamespace=true
