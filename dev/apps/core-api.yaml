@@ -24,7 +24,7 @@ spec:
         helm:
           values: |
             imagePullSecrets:
-              - name: regcred
+              - name: comissions-app
                             
             resources:
               limits:
@@ -53,7 +53,7 @@ spec:
                     - 'core-api.comissions.dev'
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: 'argo-cd'
+        namespace: 'argo-cd '
       syncPolicy:
         automated:
           prune: true
