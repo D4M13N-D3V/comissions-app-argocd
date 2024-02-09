@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: dev
+    path: apps
     repoURL: https://github.com/Data443/argocd.git
     targetRevision: HEAD
   syncPolicy:
