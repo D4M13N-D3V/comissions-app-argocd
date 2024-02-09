@@ -24,7 +24,7 @@ spec:
         helm:
           values: |
             image:
-              repository: {{.apps.core-api.image}}
+              repository: "{{.apps.core-api.image}}"
               pullPolicy: Always
               tag: "{{.apps.core-api.version}}"
 
