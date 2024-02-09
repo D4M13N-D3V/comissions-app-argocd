@@ -14,3 +14,10 @@ spec:
     path: dev/apps
     repoURL: https://github.com/comissions-app/argocd.git
     targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ApplyOutOfSyncOnly=true
+      - CreateNamespace=true
