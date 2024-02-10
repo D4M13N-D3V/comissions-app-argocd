@@ -28,7 +28,7 @@ spec:
             postgresHost: "acid-minimal-cluster"
             postgresPort: 5432
             postgresUsername: "postgres"
-            postgresPassword: "1R6iOfuSqQI8O0aaJR3xUzdMrQOXrgEgHdVgracMN5krbMhj0c96Cna0PaQKtKub"
+            postgresPassword: "xj3OCJyFm2sXD9dcgJqOsI6OBJoeInpUvCDDUtuILUHUYKIT2p85yGIFfpY6ZRte"
             postgresDatabase: "comissionsappdb"
             image:
               repository: ghcr.io/comissions-app/core-api
