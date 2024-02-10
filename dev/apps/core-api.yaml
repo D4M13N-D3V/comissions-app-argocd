@@ -20,7 +20,7 @@ spec:
       sources:
         - repoURL: https://github.com/bitnami/charts.git
           targetRevision: HEAD
-          path: charts/bitnami/postgresql/
+          path: bitnami/postgresql/
           helm:
             values: |
              nameOverride : "comissions-app-db"
