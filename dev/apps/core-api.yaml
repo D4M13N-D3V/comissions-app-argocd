@@ -25,6 +25,11 @@ spec:
         path: charts/core-api
         helm:
           values: |
+            postgresqlHost: "acid-minimal-cluster"
+            postgresqlPort: 5432
+            postgresqlUsername: "postgres"
+            postgresqlPassword: "postgres"
+            postgresqlDatabase: "comissions"
             image:
               repository: ghcr.io/comissions-app/core-api
               pullPolicy: Always
