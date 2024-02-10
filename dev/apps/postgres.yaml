@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: core-api
+  name: postgres
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
@@ -16,7 +16,7 @@ spec:
       - path: "dev/.config/config.json"
   template:
     metadata:
-      name: 'core-api'
+      name: 'postgres'
     spec:
       project: 'comissions.app'
       source:
