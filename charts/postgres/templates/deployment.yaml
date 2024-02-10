@@ -32,15 +32,11 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
           env:
-          - name: Database__Host
+          - name: POSTGRES_DB
             value: '{{ .Values.postgresDatabase }}'
-          - name: Database__Port
+          - name: POSTGRES_USER
             value: '{{ .Values.postgresUser }}'
-          - name: Database__Database
-            value: '{{ .Values.postgresDatabase }}'
-          - name: Database__username
-            value: '{{ .Values.postgresUser }}'
-          - name: Database__password
+          - name: POSTGRES_PASSWORD
             value: '{{ .Values.postgresPassword }}'
         - name: {{ .Chart.Name }}
           securityContext:

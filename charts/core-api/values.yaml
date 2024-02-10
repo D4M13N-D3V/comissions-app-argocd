@@ -39,10 +39,11 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
-postgresUser: postgres
-postgresPassword: "postgres"
-postgresDatabase: postgres
-
+postgresHost : "acid-minimal-cluster"
+postgresPort : 5432
+postgresUser: "postgres"
+postgresPassword: "tbXeXzpmPK8l5e3DW6S3IXxzIO9CYCx0d5Ow0q50jgLyx0USEselZuC9JIuJi8Oo"
+postgresDatabase: comissionsapp
 service:
   type: ClusterIP
   port: 8080
