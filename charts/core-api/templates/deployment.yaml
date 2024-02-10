@@ -38,9 +38,9 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
           - name: Database__Host
-            value: '{{ .Values.postgresDatabase }}'
+            value: '{{ .Values.postgresHost }}'
           - name: Database__Port
-            value: '{{ .Values.postgresUser }}'
+            value: '{{ .Values.postgresPort }}'
           - name: Database__Database
             value: '{{ .Values.postgresDatabase }}'
           - name: Database__username
