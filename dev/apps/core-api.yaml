@@ -29,7 +29,7 @@ spec:
             postgresPort: 5432
             postgresUsername: "postgres"
             postgresPassword: "uULzwSX1ck4R4UfsOCH4x9TmVBLj0nuKB20YBLVh0KYXDBpqF3A5QE86LZXV8BjA"
-            postgresDatabase: "comissionsappdb"
+            postgresDatabase: "comissionsapp"
             image:
               repository: ghcr.io/comissions-app/core-api
               pullPolicy: Always
