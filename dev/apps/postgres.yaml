@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: core-api
+  name: postgres
   namespace: argocd
 spec:
   goTemplate: true
@@ -23,7 +23,6 @@ spec:
           path: charts/postgresql/
           helm:
             values: |
-             nameOverride : "comissions-app-db"
               global:
                 postgresql:
                   auth:
