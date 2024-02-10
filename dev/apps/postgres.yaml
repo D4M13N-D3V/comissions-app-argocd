@@ -20,7 +20,7 @@ spec:
       sources:
         - repoURL: https://github.com/comissions-app/argocd.git
           targetRevision: HEAD
-          path: charts/postgres/
+          path: charts/postgresql/
           helm:
             values: |
              nameOverride : "comissions-app-db"
