@@ -20,23 +20,10 @@ spec:
       sources:
         - repoURL: https://github.com/comissions-app/argocd.git
           targetRevision: HEAD
-          path: charts/postgresql/
-          helm:
-            values: |
-             nameOverride : "comissions-app-db"
-              global:
-                postgresql:
-                  auth:
-                    username: "postgres"
-                    password: "postgres"
-                    database: "comissionsapp" 
-              postgresqlPassword:
-        - repoURL: https://github.com/comissions-app/argocd.git
-          targetRevision: HEAD
           path: charts/core-api
           helm:
             values: |
-              postgresHost: "comissions-app-db"
+              postgresHost: "postgres"
               postgresPort: 5432
               postgresUsername: "postgres"
               postgresPassword: "postgres"

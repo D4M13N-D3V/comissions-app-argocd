@@ -1,0 +1,42 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: core-api
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - git:
+      repoURL: https://github.com/comissions-app/argocd.git
+      revision: HEAD
+      files:
+      - path: "dev/.config/config.json"
+  template:
+    metadata:
+      name: 'postgres'
+    spec:
+      project: 'comissions.app'
+      sources:
+        - repoURL: https://github.com/comissions-app/argocd.git
+          targetRevision: HEAD
+          path: charts/postgresql/
+          helm:
+            values: |
+             nameOverride : "comissions-app-db"
+              global:
+                postgresql:
+                  auth:
+                    username: "postgres"
+                    password: "postgres"
+                    database: "comissionsapp" 
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: 'argocd'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - ApplyOutOfSyncOnly=true
+          - CreateNamespace=true
