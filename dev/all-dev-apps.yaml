@@ -1,86 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
+kind: Application
 metadata:
-  name: development-apps
+  name: development
   namespace: argocd
 spec:
-  goTemplate: true
-  goTemplateOptions: ["missingkey=error"]
-  generators:
-  - git:
-      repoURL: https://github.com/comissions-app/argocd.git
-      revision: HEAD
-      files:
-      - path: "dev/.config/config.json"
-  template:
-    metadata:
-      name: 'core-api'
-    spec:
-      project: 'comissions.app'
-      sources:
-        - repoURL: https://github.com/comissions-app/argocd.git
-          targetRevision: HEAD
-          path: bitnami/postgresql/
-          helm:
-            values: |
-             nameOverride : "comissions-app-db"
-              global:
-                postgresql:
-                  auth:
-                    username: "postgres"
-                    password: "postgres"
-                    database: "comissionsapp" 
-              postgresqlPassword:
-        - repoURL: https://github.com/comissions-app/argocd.git
-          targetRevision: HEAD
-          path: charts/core-api
-          helm:
-            values: |
-              postgresHost: "comissions-app-db"
-              postgresPort: 5432
-              postgresUsername: "postgres"
-              postgresPassword: "postgres"
-              postgresDatabase: "comissionsapp"
-              image:
-                repository: ghcr.io/comissions-app/core-api
-                pullPolicy: Always
-                tag: "latest"
-
-              imagePullSecrets:
-                - name: comissions-app
-                              
-              resources:
-                limits:
-                  cpu: 1
-                requests:
-                  cpu: 100m
-              autoscaling:
-                enabled: true
-                minReplicas: 2
-                maxReplicas: 20
-                targetCPUUtilizationPercentage: 80
-                # targetMemoryUtilizationPercentage: 80
-
-              ingress:
-                enabled: true
-                annotations:
-                  nginx.ingress.kubernetes.io/proxy-body-size: 512m
-                hosts:
-                  - host: 'core-api.comissions.dev'
-                    paths:
-                      - path: /
-                        pathType: ImplementationSpecific
-                tls:
-                  - secretName: 'tls-secret'
-                    hosts:
-                      - 'core-api.comissions.dev'
-      destination:
-        server: 'https://kubernetes.default.svc'
-        namespace: 'argocd'
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
-        syncOptions:
-          - ApplyOutOfSyncOnly=true
-          - CreateNamespace=true
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  project: comissions.app
+  source:
+    path: dev/apps
+    repoURL: https://github.com/comissions-app/argocd.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ApplyOutOfSyncOnly=true
+      - CreateNamespace=true
