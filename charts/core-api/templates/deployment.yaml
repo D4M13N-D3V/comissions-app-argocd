@@ -31,22 +31,22 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-          env:
-            - name: Database__Host
-              value: '{{ .Values.postgresDatabase }}'
-            - name: Database__Port
-              value: '{{ .Values.postgresUser }}'
-            - name: Database__Database
-              value: '{{ .Values.postgresDatabase }}'
-            - name: Database__username
-              value: '{{ .Values.postgresUser }}'
-            - name: Database__password
-              value: '{{ .Values.postgresPassword }}'
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name: Database__Host
+            value: '{{ .Values.postgresDatabase }}'
+          - name: Database__Port
+            value: '{{ .Values.postgresUser }}'
+          - name: Database__Database
+            value: '{{ .Values.postgresDatabase }}'
+          - name: Database__username
+            value: '{{ .Values.postgresUser }}'
+          - name: Database__password
+            value: '{{ .Values.postgresPassword }}'
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
