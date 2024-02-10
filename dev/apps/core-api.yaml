@@ -23,7 +23,7 @@ spec:
           path: charts/core-api
           helm:
             values: |
-              postgresHost: "postgres"
+              postgresHost: "postgres-postgresql"
               postgresPort: 5432
               postgresUsername: "postgres"
               postgresPassword: "postgres"
