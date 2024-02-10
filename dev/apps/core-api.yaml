@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
   name: core-api
-  namespace: comissions-dev
+  namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
@@ -60,7 +60,7 @@ spec:
                     - 'core-api.comissions.dev'
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: 'comissions-dev'
+        namespace: 'argocd'
       syncPolicy:
         automated:
           prune: true
