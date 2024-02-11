@@ -71,6 +71,17 @@ resources: {}
   #   cpu: 100m
   # memory: 128Mi
 
+auth0:
+  issuerBaseUrl: "https://dev-12mb5yq82dow1twh.us.auth0.com"
+  clientId: "avpoVGBxJfr15m6d3BfTzsEH4v3yBXna"
+  clientSecret: "rCbTzrXdwZermb-N2GGqnCVI8YSTa32CA3GtuqZcmDRA6X0OGQGyiP4cRkhBSIsd"
+  baseUrl: "https://development.comissions.app"
+
+# AUTH0_ISSUER_BASE_URL="https://dev-12mb5yq82dow1twh.us.auth0.com"
+# AUTH0_CLIENT_ID="avpoVGBxJfr15m6d3BfTzsEH4v3yBXna"
+# AUTH0_CLIENT_SECRET="rCbTzrXdwZermb-N2GGqnCVI8YSTa32CA3GtuqZcmDRA6X0OGQGyiP4cRkhBSIsd"
+# AUTH0_BASE_URL="http://localhost:3000"
+# AUTH0_SECRET="VX5LKeGHeaqKsgNz8Kn1gQ7MSHmwrXJdC2DMjVY82_YHjiRqdPrVNpFFkXBZy8yh"
 
 autoscaling:
   enabled: false
