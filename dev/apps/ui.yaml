@@ -1,0 +1,70 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: ui
+  namespace: argocd
+spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
+  generators:
+  - git:
+      repoURL: https://github.com/comissions-app/argocd.git
+      revision: HEAD
+      files:
+      - path: "dev/.config/config.json"
+  template:
+    metadata:
+      name: 'ui'
+    spec:
+      project: 'comissions.app'
+      sources:
+        - repoURL: https://github.com/comissions-app/argocd.git
+          targetRevision: HEAD
+          path: charts/ui
+          helm:
+            values: | 
+              
+
+              image:
+                repository: ghcr.io/comissions-app/ui
+                pullPolicy: Always
+                tag: "latest"
+
+              imagePullSecrets:
+                - name: comissions-app
+                              
+              resources:
+                limits:
+                  cpu: 1
+                requests:
+                  cpu: 100m
+              autoscaling:
+                enabled: true
+                minReplicas: 2
+                maxReplicas: 20
+                targetCPUUtilizationPercentage: 80
+                # targetMemoryUtilizationPercentage: 80
+
+              ingress:
+                enabled: true
+                annotations:
+                  nginx.ingress.kubernetes.io/proxy-body-size: 512m
+                hosts:
+                  - host: 'comissions.dev'
+                    paths:
+                      - path: /
+                        pathType: ImplementationSpecific
+                tls:
+                  - secretName: 'tls-secret'
+                    hosts:
+                      - 'comissions.dev'
+      destination:
+        server: 'https://kubernetes.default.svc'
+        namespace: 'argocd'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - ApplyOutOfSyncOnly=true
+          - CreateNamespace=true
