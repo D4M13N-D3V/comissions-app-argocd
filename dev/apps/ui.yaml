@@ -25,8 +25,8 @@ spec:
             values: | 
               auth:
                 issuerBaseUrl: "https://dev-12mb5yq82dow1twh.us.auth0.com"
-                clientId: "avpoVGBxJfr15m6d3BfTzsEH4v3yBXna"
-                clientSecret: "rCbTzrXdwZermb-N2GGqnCVI8YSTa32CA3GtuqZcmDRA6X0OGQGyiP4cRkhBSIsd"
+                clientId: "U39Jg6oyFoNihzjZ24SX2FxiBx2lqvsC"
+                clientSecret: "UBH4HTsvkoWHImQwI4abyh46s6qpEnD3hfrODEYBTX7p_5v0bYogz-b_6wJtOkDg"
                 baseUrl: "https://development.comissions.app"
 
               image:
