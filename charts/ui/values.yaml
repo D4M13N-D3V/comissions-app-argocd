@@ -12,7 +12,7 @@ auth:
 
 image:
   repository: docker pull ghcr.io/comissions-app/ui
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
 
