@@ -37,6 +37,8 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+          - name: Stripe__WebHookSecret
+            value: 'whsec_WTxw2seQHaJjSbLiRr1q8fs1wh8vGdGn'
           - name: Database__Host
             value: '{{ .Values.postgresHost }}'
           - name: Database__Port
