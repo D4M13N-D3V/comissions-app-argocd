@@ -38,7 +38,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
           - name: Stripe__WebHookSecret
-            value: 'whsec_WTxw2seQHaJjSbLiRr1q8fs1wh8vGdGn'
+            value: 'whsec_I4tVknFRWurdaFnFzAVFEYGxJcVxsOYM'
           - name: Database__Host
             value: '{{ .Values.postgresHost }}'
           - name: Database__Port
