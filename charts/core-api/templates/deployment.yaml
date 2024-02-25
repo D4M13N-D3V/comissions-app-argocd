@@ -37,6 +37,10 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+          - name: Auth0__ClientId
+            value: U39Jg6oyFoNihzjZ24SX2FxiBx2lqvsC
+          - name: Auth0__ClientSecret
+            value: UBH4HTsvkoWHImQwI4abyh46s6qpEnD3hfrODEYBTX7p_5v0bYogz-b_6wJtOkDg
           - name: Stripe__WebHookSecret
             value: 'whsec_I4tVknFRWurdaFnFzAVFEYGxJcVxsOYM'
           - name: Database__Host
