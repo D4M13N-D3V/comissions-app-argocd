@@ -38,9 +38,9 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
           - name: Auth0__ClientId
-            value: U39Jg6oyFoNihzjZ24SX2FxiBx2lqvsC
+            value: 19GWUL7fWFQWEpdFFtlgv2x3kqfSa0ES
           - name: Auth0__ClientSecret
-            value: UBH4HTsvkoWHImQwI4abyh46s6qpEnD3hfrODEYBTX7p_5v0bYogz-b_6wJtOkDg
+            value: VX5LKeGHeaqKsgNz8Kn1gQ7MSHmwrXJdC2DMjVY82_YHjiRqdPrVNpFFkXBZy8yh
           - name: Stripe__WebHookSecret
             value: 'whsec_I4tVknFRWurdaFnFzAVFEYGxJcVxsOYM'
           - name: Database__Host
