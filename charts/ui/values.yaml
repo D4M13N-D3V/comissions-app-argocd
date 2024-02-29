@@ -8,7 +8,7 @@ auth:
   issuerBaseUrl: "https://dev-12mb5yq82dow1twh.us.auth0.com"
   clientId: "U39Jg6oyFoNihzjZ24SX2FxiBx2lqvsC"
   clientSecret: "UBH4HTsvkoWHImQwI4abyh46s6qpEnD3hfrODEYBTX7p_5v0bYogz-b_6wJtOkDg"
-  baseUrl: "https://comissions.dev"
+  baseUrl: "https://development.comissions.app"
 
 image:
   repository: docker pull ghcr.io/comissions-app/ui
