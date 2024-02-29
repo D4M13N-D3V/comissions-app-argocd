@@ -42,6 +42,8 @@ spec:
           - name: Auth0__Audience
             value: {{ .Values.auth.audience}}
           - name: Auth0__Domain
+            value: {{ .Values.auth.domain }}
+          - name: Auth0__IssuerBaseUrl
             value: {{ .Values.auth.issuerBaseUrl }}
           - name: Auth0__ClientId
             value: {{ .Values.auth.clientId }}
