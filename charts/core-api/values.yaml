@@ -38,12 +38,29 @@ securityContext: {}
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
   # runAsUser: 1000
+ui:
+  baseUrl: "http://localhost:3000"
 
-postgresHost : "acid-minimal-cluster"
-postgresPort : 5432
-postgresUser: "postgres"
-postgresPassword: "tbXeXzpmPK8l5e3DW6S3IXxzIO9CYCx0d5Ow0q50jgLyx0USEselZuC9JIuJi8Oo"
-postgresDatabase: comissionsapp
+postgres:
+  host: "acid-minimal-cluster"
+  port : 5432
+  user: "postgres"
+  password: "tbXeXzpmPK8l5e3DW6S3IXxzIO9CYCx0d5Ow0q50jgLyx0USEselZuC9JIuJi8Oo"
+  database: comissionsapp
+
+auth:
+  audience: "https://api.artplatform.com"
+  clientId: "19GWUL7fWFQWEpdFFtlgv2x3kqfSa0ES"
+  clientSecret: "VX5LKeGHeaqKsgNz8Kn1gQ7MSHmwrXJdC2DMjVY82_YHjiRqdPrVNpFFkXBZy8yh"
+  domain: "https://dev-12mb5yq82dow1twh.us.auth0.com/"
+
+stripe:
+  apiKey: "sk_test_51OdJ1SLooS0IZqYkx2IdNoLcscm6BisgaUyYVIc5jM1RMmarww2e9hLLQS3Atn6TQi00p9YQkCLGQPhAI2gf9ZSY00HmbQYCvP"
+  webhookSecret: "whsec_WTxw2seQHaJjSbLiRr1q8fs1wh8vGdGn"
+
+novu:
+  apiKey: "287ad99d1cbeba7f96a7d2637b022e6f"
+
 service:
   type: ClusterIP
   port: 8080

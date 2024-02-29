@@ -1,21 +1,16 @@
 {
-    "deployment": {
-      "argocd": {
-        "project": "comissions.app"
-      },
-      "cluster": {
-        "name": "in-cluster",
-        "namespace": "comissions-dev",
-        "address": "https://kubernetes.default.svc"
-      }
+  "deployment": {
+    "argocd": {
+      "project": "default"
     },
-    "apps": {
-        "core-api": {
-            "version" : "latest",
-            "image": "ghcr.io/comissions-app/core-api",
-            "ingress":{
-                "host": "core-api.comissions-dev.com"
-            }
-        }
+    "cluster": {
+      "name": "in-cluster",
+      "namespace": "comissions-dev",
+      "address": "https://kubernetes.default.svc"
     }
+  },
+  "apps": 
+  {
+    
   }
+}

@@ -23,11 +23,30 @@ spec:
           path: charts/core-api
           helm:
             values: |
-              postgresHost: "postgres-postgresql"
-              postgresPort: 5432
-              postgresUsername: "postgres"
-              postgresPassword: "postgres"
-              postgresDatabase: "comissionsapp"
+              postgres:
+                host: "postgres-postgresql"
+                port: 5432
+                username: "postgres"
+                password: "postgres"
+                database: "comissionsapp"
+
+                ui:
+                  baseUrl: "http://development.comissions.app"
+
+                auth:
+                  audience: "https://api.artplatform.com"
+                  clientId: "19GWUL7fWFQWEpdFFtlgv2x3kqfSa0ES"
+                  clientSecret: "VX5LKeGHeaqKsgNz8Kn1gQ7MSHmwrXJdC2DMjVY82_YHjiRqdPrVNpFFkXBZy8yh"
+                  domain: "https://dev-12mb5yq82dow1twh.us.auth0.com/"
+
+                stripe:
+                  apiKey: "sk_test_51OdJ1SLooS0IZqYkx2IdNoLcscm6BisgaUyYVIc5jM1RMmarww2e9hLLQS3Atn6TQi00p9YQkCLGQPhAI2gf9ZSY00HmbQYCvP"
+                  webhookSecret: "whsec_WTxw2seQHaJjSbLiRr1q8fs1wh8vGdGn"
+
+                novu:
+                  apiKey: "287ad99d1cbeba7f96a7d2637b022e6f"
+
+              
               image:
                 repository: ghcr.io/comissions-app/core-api
                 pullPolicy: Always

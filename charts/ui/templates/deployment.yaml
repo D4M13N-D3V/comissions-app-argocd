@@ -46,7 +46,13 @@ spec:
           - name: AUTH0_BASE_URL
             value: '{{ .Values.auth.baseUrl }}'
           - name: AUTH0_SECRET
-            value: '{{ .Values.auth.clientSecret }}'
+            value: '{{ .Values.auth.secret }}'
+          - name: AUTH0_AUDIENCE
+            value: '{{ .Values.auth.audience }}'
+          - name: AUTH0_SCOPE
+            value: '{{ .Values.auth.scope }}'
+          - name: NEXT_PUBLIC_API_URL
+            value: '{{ .Values.publicApiUrl }}'
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}

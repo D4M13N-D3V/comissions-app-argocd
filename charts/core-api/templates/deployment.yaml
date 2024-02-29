@@ -37,22 +37,32 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+          - name: UI__BaseUrl
+            value: {{.Values.auth.baseUrl}}
+          - name: Auth0__Audience
+            value: {{ .Values.auth.audience}}
+          - name: Auth0__Domain
+            value: {{ .Values.auth.issuerBaseUrl }}
           - name: Auth0__ClientId
-            value: 19GWUL7fWFQWEpdFFtlgv2x3kqfSa0ES
+            value: {{ .Values.auth.clientId }}
           - name: Auth0__ClientSecret
-            value: VX5LKeGHeaqKsgNz8Kn1gQ7MSHmwrXJdC2DMjVY82_YHjiRqdPrVNpFFkXBZy8yh
+            value: {{ .Values.auth.clientSecret }}
           - name: Stripe__WebHookSecret
-            value: 'whsec_I4tVknFRWurdaFnFzAVFEYGxJcVxsOYM'
+            value: '{{ .Values.stripe.webhookSecret }}'
+          - name: Stripe__ApiKey
+            value: '{{ .Values.stripe.apiKey }}'
+          - name: Novu__ApiKey
+            value: '{{ .Values.novu.apiKey }}'
           - name: Database__Host
-            value: '{{ .Values.postgresHost }}'
+            value: '{{ .Values.postgres.host }}'
           - name: Database__Port
-            value: '{{ .Values.postgresPort }}'
+            value: '{{ .Values.postgres.port }}'
           - name: Database__Database
-            value: '{{ .Values.postgresDatabase }}'
+            value: '{{ .Values.postgres.database }}'
           - name: Database__username
-            value: '{{ .Values.postgresUser }}'
+            value: '{{ .Values.postgres.user }}'
           - name: Database__password
-            value: '{{ .Values.postgresPassword }}'
+            value: '{{ .Values.postgres.password }}'
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
