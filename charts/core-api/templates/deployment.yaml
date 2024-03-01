@@ -38,7 +38,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
           - name: UI__BaseUrl
-            value: {{.Values.auth.baseUrl}}
+            value: {{.Values.ui.baseUrl}}
           - name: Auth0__Audience
             value: {{ .Values.auth.audience}}
           - name: Auth0__Domain
