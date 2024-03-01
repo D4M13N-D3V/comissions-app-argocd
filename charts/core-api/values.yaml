@@ -56,7 +56,7 @@ auth:
 
 stripe:
   apiKey: "sk_test_51OdJ1SLooS0IZqYkx2IdNoLcscm6BisgaUyYVIc5jM1RMmarww2e9hLLQS3Atn6TQi00p9YQkCLGQPhAI2gf9ZSY00HmbQYCvP"
-  webhookSecret: "whsec_WTxw2seQHaJjSbLiRr1q8fs1wh8vGdGn"
+  webhookSecret: "whsec_I4tVknFRWurdaFnFzAVFEYGxJcVxsOYM"
 
 novu:
   apiKey: "287ad99d1cbeba7f96a7d2637b022e6f"
