@@ -16,7 +16,7 @@ spec:
     metadata:
       name: 'ui'
     spec:
-      project: 'comissions.app'
+      project: '{{ .deployment.argocd.project }}'
       sources:
         - repoURL: https://github.com/comissions-app/argocd.git
           targetRevision: HEAD
@@ -69,8 +69,8 @@ spec:
                     hosts:
                       - 'comissions.dev'
       destination:
-        server: 'https://kubernetes.default.svc'
-        namespace: 'comissions-dev'
+        server: '{{ .deployment.cluster.address }}'
+        namespace: '{{ .deployment.cluster.namespace }}'
       syncPolicy:
         automated:
           prune: true
