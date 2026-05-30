@@ -8,7 +8,7 @@ spec:
   goTemplateOptions: ["missingkey=error"]
   generators:
   - git:
-      repoURL: https://github.com/comissions-app/argocd.git
+      repoURL: https://github.com/D4M13N-D3V/comissions-app-argocd.git
       revision: HEAD
       files:
       - path: "dev/.config/config.json"
@@ -18,7 +18,7 @@ spec:
     spec:
       project: 'comissions.app'
       sources:
-        - repoURL: https://github.com/comissions-app/argocd.git
+        - repoURL: https://github.com/D4M13N-D3V/comissions-app-argocd.git
           targetRevision: HEAD
           path: charts/ui
           helm:
