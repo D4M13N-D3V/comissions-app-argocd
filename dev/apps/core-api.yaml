@@ -82,7 +82,7 @@ spec:
                       - 'core-api.comissions.dev'
       destination:
         server: 'https://kubernetes.default.svc'
-        namespace: 'argocd'
+        namespace: 'comissions-dev'
       syncPolicy:
         automated:
           prune: true
