@@ -80,6 +80,29 @@ service:
 #     path: /health
 #     port: http
 
+# Opt-in NetworkPolicy. When enabled with empty rules it allows ingress to the
+# service port from anywhere and leaves egress unrestricted. Populate `ingress.from`
+# / `egress` to lock it down to real sources (e.g. ui pods, postgres) once the
+# cluster's ingress-controller and namespace labels are known.
+networkPolicy:
+  enabled: false
+  ingress:
+    from: []
+    # - namespaceSelector:
+    #     matchLabels:
+    #       kubernetes.io/metadata.name: ingress-nginx
+    # - podSelector:
+    #     matchLabels:
+    #       app.kubernetes.io/name: ui
+  egress: []
+    # - to:
+    #     - podSelector:
+    #         matchLabels:
+    #           app.kubernetes.io/name: postgresql
+    #   ports:
+    #     - port: 5432
+    #       protocol: TCP
+
 ingress:
   enabled: true
   className: "nginx"

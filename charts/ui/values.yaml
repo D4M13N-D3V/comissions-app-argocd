@@ -67,6 +67,26 @@ service:
 #     path: /
 #     port: http
 
+# Opt-in NetworkPolicy. When enabled with empty rules it allows ingress to the
+# service port from anywhere and leaves egress unrestricted. Populate `ingress.from`
+# / `egress` to lock it down (e.g. ingress-controller in, core-api out) once the
+# cluster's ingress-controller and namespace labels are known.
+networkPolicy:
+  enabled: false
+  ingress:
+    from: []
+    # - namespaceSelector:
+    #     matchLabels:
+    #       kubernetes.io/metadata.name: ingress-nginx
+  egress: []
+    # - to:
+    #     - podSelector:
+    #         matchLabels:
+    #           app.kubernetes.io/name: core-api
+    #   ports:
+    #     - port: 8080
+    #       protocol: TCP
+
 ingress:
   enabled: true
   className: "nginx"
