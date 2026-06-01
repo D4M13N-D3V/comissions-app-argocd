@@ -22,18 +22,17 @@ spec:
           targetRevision: main
           path: charts/ui
           helm:
-            values: | 
-            publicApiUrl: "https://core-api.development.comissions.app"
-            
-            auth:
-              issuerBaseUrl: "https://dev-12mb5yq82dow1twh.us.auth0.com"
-              clientId: "U39Jg6oyFoNihzjZ24SX2FxiBx2lqvsC"
-              clientSecret: "UBH4HTsvkoWHImQwI4abyh46s6qpEnD3hfrODEYBTX7p_5v0bYogz-b_6wJtOkDg"
-              baseUrl: "https://development.comissions.app"
-              secret: "U39Jg6oyFoNihzjZ24SX2FxiBx2lqvsC"
-              audience: "https://api.artplatform.com"
-              scope: "openid profile email read:user write:user read:request write:request read:artist write:artist"
+            values: |
+              publicApiUrl: "https://core-api.development.comissions.app"
 
+              auth:
+                issuerBaseUrl: "https://dev-12mb5yq82dow1twh.us.auth0.com"
+                clientId: "U39Jg6oyFoNihzjZ24SX2FxiBx2lqvsC"
+                clientSecret: "UBH4HTsvkoWHImQwI4abyh46s6qpEnD3hfrODEYBTX7p_5v0bYogz-b_6wJtOkDg"
+                baseUrl: "https://development.comissions.app"
+                secret: "U39Jg6oyFoNihzjZ24SX2FxiBx2lqvsC"
+                audience: "https://api.artplatform.com"
+                scope: "openid profile email read:user write:user read:request write:request read:artist write:artist"
 
               image:
                 repository: ghcr.io/comissions-app/ui
@@ -42,12 +41,13 @@ spec:
 
               imagePullSecrets:
                 - name: comissions-app
-                              
+
               resources:
                 limits:
                   cpu: 1
                 requests:
                   cpu: 100m
+
               autoscaling:
                 enabled: true
                 minReplicas: 2
