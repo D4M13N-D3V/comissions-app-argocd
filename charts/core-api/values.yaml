@@ -43,8 +43,8 @@ ui:
 
 postgres:
   host: "acid-minimal-cluster"
-  port : 5432
-  user: "postgres"
+  port: 5432
+  username: "postgres"
   password: "tbXeXzpmPK8l5e3DW6S3IXxzIO9CYCx0d5Ow0q50jgLyx0USEselZuC9JIuJi8Oo"
   database: comissionsapp
 
