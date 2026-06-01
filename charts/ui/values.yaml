@@ -56,6 +56,17 @@ service:
   type: ClusterIP
   port: 3000
 
+# Probes are only rendered when defined. Set a real health endpoint before
+# enabling — an incorrect path will restart healthy pods.
+# livenessProbe:
+#   httpGet:
+#     path: /
+#     port: http
+# readinessProbe:
+#   httpGet:
+#     path: /
+#     port: http
+
 ingress:
   enabled: true
   className: "nginx"
