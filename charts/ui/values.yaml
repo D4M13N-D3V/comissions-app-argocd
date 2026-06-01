@@ -14,7 +14,7 @@ auth:
   scope: "openid profile email read:user write:user read:request write:request read:artist write:artist"
 
 image:
-  repository: ghcr.io/comissions-app/ui
+  repository: ghcr.io/d4m13n-d3v/comissions-app-ui
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
