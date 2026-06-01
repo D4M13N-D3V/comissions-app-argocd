@@ -9,7 +9,7 @@ spec:
   generators:
   - git:
       repoURL: https://github.com/D4M13N-D3V/comissions-app-argocd.git
-      revision: HEAD
+      revision: main
       files:
       - path: "dev/.config/config.json"
   template:
@@ -19,7 +19,7 @@ spec:
       project: 'comissions.app'
       sources:
         - repoURL: https://github.com/D4M13N-D3V/comissions-app-argocd.git
-          targetRevision: HEAD
+          targetRevision: main
           path: charts/ui
           helm:
             values: | 

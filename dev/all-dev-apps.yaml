@@ -11,7 +11,7 @@ spec:
   source:
     path: dev/apps
     repoURL: https://github.com/D4M13N-D3V/comissions-app-argocd.git
-    targetRevision: HEAD
+    targetRevision: main
   syncPolicy:
     automated:
       prune: true
