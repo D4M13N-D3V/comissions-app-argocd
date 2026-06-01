@@ -16,7 +16,7 @@ spec:
     metadata:
       name: 'postgres'
     spec:
-      project: 'comissions.app'
+      project: '{{ .deployment.argocd.project }}'
       sources:
         - repoURL: https://github.com/D4M13N-D3V/comissions-app-argocd.git
           targetRevision: main
@@ -30,8 +30,8 @@ spec:
                     password: "postgres"
                     database: "comissionsapp" 
       destination:
-        server: 'https://kubernetes.default.svc'
-        namespace: 'comissions-dev'
+        server: '{{ .deployment.cluster.address }}'
+        namespace: '{{ .deployment.cluster.namespace }}'
       syncPolicy:
         automated:
           prune: true
